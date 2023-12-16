@@ -49,6 +49,10 @@ public class ViewPortfolio extends javax.swing.JFrame {
         sharesOwnedField = new javax.swing.JTextField();
         currPriceField = new javax.swing.JTextField();
         totalPriceField = new javax.swing.JTextField();
+        totalValueLbl = new javax.swing.JLabel();
+        totalValueField = new javax.swing.JTextField();
+        profitLossField = new javax.swing.JTextField();
+        profitlossLbl = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -89,11 +93,24 @@ public class ViewPortfolio extends javax.swing.JFrame {
             }
         });
 
+        totalValueField.setText(String.format("%.2f", mf.user.evaluatePortfolioValue()));
+        profitLossField.setText(String.format("%.2f", mf.user.viewPortfolioPerformance()));
+        profitLossField.setFont(new Font("Serif", Font.BOLD, 12));
+
+        // Set the color of the profit/loss field to red if the user is losing money and green if they are making money
+        if (mf.user.viewPortfolioPerformance() < 0) 
+            profitLossField.setForeground(Color.RED);
+        else 
+            profitLossField.setForeground(new Color(0, 100, 0));
+        
+
         jScrollPane1.setViewportView(jList1);
 
         sharesOwnedLbl.setText("Shares Owned:");
         currPriceLbl.setText("Current Price/Share:");
         totalPriceLbl.setText("Total Price of Share: ");
+        totalValueLbl.setText("Total Value of Port: ");
+        profitlossLbl.setText("Profit/Loss: ");
 
         // Set the background of the labels to be clearly visible
         sharesOwnedLbl.setOpaque(true);
@@ -111,9 +128,21 @@ public class ViewPortfolio extends javax.swing.JFrame {
         totalPriceLbl.setForeground(new Color(255, 255, 255));
         totalPriceLbl.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
+        totalValueLbl.setOpaque(true);
+        totalValueLbl.setBackground(new Color(0, 0, 0, 123));
+        totalValueLbl.setForeground(new Color(255, 255, 255));
+        totalValueLbl.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        profitlossLbl.setOpaque(true);
+        profitlossLbl.setBackground(new Color(0, 0, 0, 123));
+        profitlossLbl.setForeground(new Color(255, 255, 255));
+        profitlossLbl.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
         sharesOwnedField.setEditable(false);
         currPriceField.setEditable(false);
         totalPriceField.setEditable(false);
+        totalValueField.setEditable(false);
+        profitLossField.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,27 +155,41 @@ public class ViewPortfolio extends javax.swing.JFrame {
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(currPriceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(142, 142, 142))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(totalPriceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sharesOwnedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(totalValueLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalValueField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sharesOwnedField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(currPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(totalPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(currPriceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(142, 142, 142))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(totalPriceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(sharesOwnedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(profitlossLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(sharesOwnedField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(currPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(totalPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(profitLossField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalValueLbl)
+                    .addComponent(totalValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profitLossField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profitlossLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,7 +220,7 @@ public class ViewPortfolio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 3, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -229,5 +272,9 @@ public class ViewPortfolio extends javax.swing.JFrame {
     private javax.swing.JLabel sharesOwnedLbl;
     private javax.swing.JTextField totalPriceField;
     private javax.swing.JLabel totalPriceLbl;
+    private javax.swing.JTextField totalValueField;
+    private javax.swing.JLabel totalValueLbl;
+    private javax.swing.JTextField profitLossField;
+    private javax.swing.JLabel profitlossLbl;
     // End of variables declaration                   
 }
