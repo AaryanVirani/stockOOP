@@ -21,7 +21,6 @@
   - Timeline starts upon the first opening of the application and continues forward from there
     until user exits program.
 
-## Usage
-
-**Run** the `stockOOP.jar` file in the folder. Run it within the folder to get the background (not necessary, but 
-will prove to be a better experience)
+# Usage
+  Run the `stockOOP.jar` file in the folder. Run it within the folder to get the background (not necessary, but 
+  will prove to be a better experience)
