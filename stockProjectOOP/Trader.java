@@ -44,8 +44,8 @@ public interface Trader {
      * Provides an overview of the trader's portfolio performance, including total
      * profit or loss.
      * 
-     * @return String summary of portfolio performance.
+     * @return double reprsenting portfolio performance.
      */
-    String viewPortfolioPerformance();
+    double viewPortfolioPerformance();
 
 }

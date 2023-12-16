@@ -67,18 +67,16 @@ public class User implements Trader {
      * METHOD: viewPortfolioPerformance
      * 
      * PROCESSING: Provides an overview of the user's portfolio performance,
-     * including the total
-     * value of the portfolio, the total investment, and the overall profit or loss.
+     * including the  the overall profit or loss.
      * This method calculates the total investment based on the initial purchase
      * price of each stock
      * in the portfolio and compares it with the current portfolio value to
      * determine the profit or loss.
      * 
-     * @return String - A summary of the portfolio's performance, including total
-     *         value, total investment, and profit/loss.
+     * @return double - A double representing of the portfolio's performance (profit/loss)
      */
     @Override
-    public String viewPortfolioPerformance() {
+    public double viewPortfolioPerformance() {
         double totalInvestment = 0.0;
         double currentPortfolioValue = evaluatePortfolioValue();
 
@@ -87,9 +85,7 @@ public class User implements Trader {
         }
 
         double profitOrLoss = currentPortfolioValue - totalInvestment;
-        return "Portfolio Value: " + currentPortfolioValue + "\n" +
-                "Total Investment: " + totalInvestment + "\n" +
-                "Profit/Loss: " + profitOrLoss;
+        return profitOrLoss;
     }
 
 }
